@@ -1,0 +1,22 @@
+Finally got React with Node.js working
+Attempted to use node.js and react with mui
+Will need to figure out how to set that up for everyone so that they can use mui
+MUI did not work on my machine due to dependencies
+Attempted to install dependencies
+Will continue this next sprint
+
+npm config set registry http://registry.npmjs.org
+npm install @mui/material @emotion/react @emotion/styled
+
+dependencies
+npm install react react-dom
+react is one, but that should already be installed for everyone
+
+styled components
+npm install @mui/material @mui/styled-engine-sc styled-components
+
+mySQL query on command line
+
+Node.js is all backend
+While coding in react, it essentially holds up our server on a local host so that you can see what you are creating
+Our plan is to use MUI with React for easy customization
