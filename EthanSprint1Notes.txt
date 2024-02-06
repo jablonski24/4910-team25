@@ -15,8 +15,11 @@ react is one, but that should already be installed for everyone
 styled components
 npm install @mui/material @mui/styled-engine-sc styled-components
 
-mySQL query on command line
+mySQL queries on command line
+https://gist.github.com/bradtraversy/c831baaad44343cc945e76c2e30927b3
+https://www.mysqltutorial.org/mysql-cheat-sheet/
 
 Node.js is all backend
+Node.js automatically sets up when use npm create-react-app test-app
 While coding in react, it essentially holds up our server on a local host so that you can see what you are creating
 Our plan is to use MUI with React for easy customization
