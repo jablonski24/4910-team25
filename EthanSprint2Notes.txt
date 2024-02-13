@@ -1,0 +1,11 @@
+This sprint I am creating a next.js app and trying to get something out
+First off, you have to npm install react and npm install react-dom
+then you have to npm install @mui/material @emotion/react @emotion/styled
+sometimes a specific mui component will require an npm install or import so be on the lookout for that
+
+I created a very simple about page for us to use when connect our database to our about page this week
+I used some react components from mui and that helped me understand how react works a bit better
+
+Looked into connecting the about page to the rds.
+Decided as a team that we will use next.js, but when managing the db, we will use lambda
+Next.js api functions do not scale very well, so Lambda is probably the better option
