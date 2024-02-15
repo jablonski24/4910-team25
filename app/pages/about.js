@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 import { BottomNavigation } from '@mui/material';
 import styles from '@/styles/Home.module.css';
 import { lightBlue } from '@mui/material/colors';
+import ResponsiveAppBar from '../styles/appbar';
 
 export default function About() {
   const [value, setValue] = useState(0);
@@ -17,9 +18,10 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About Us - Good Driver Incentive Program</title>
+        <title>About Us</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ResponsiveAppBar />
       <body>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%'}}>
         <Tabs
