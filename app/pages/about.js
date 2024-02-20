@@ -18,7 +18,7 @@ export default function About() {
 
   useEffect(() => {
     async function fetchEntries() {
-      const res = await fetch('http://localhost:3000/api/about_info');
+      const res = await fetch('https://main.d2gmf4p0ogiu5s.amplifyapp.com/api/about_info');
       const data = await res.json();
       setEntries(data);
     }
