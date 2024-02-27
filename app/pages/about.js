@@ -16,9 +16,10 @@ export default function About() {
     setValue(newValue);
   };
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
     async function fetchEntries() {
-      const res = await fetch('https://main.d2gmf4p0ogiu5s.amplifyapp.com/api/about_info');
+      const res = await fetch(`${baseUrl}/api/about_info`);
       const data = await res.json();
       setEntries(data);
     }
