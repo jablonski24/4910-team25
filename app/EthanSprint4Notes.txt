@@ -1,0 +1,36 @@
+Cognito is implemented with AWS Amplify to display on the front end
+https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-integrate-apps.html
+
+https://www.youtube.com/watch?v=g4qKydnd0vU
+AWS Amplify will not work on my computer, so I need Mauricio to do it on his
+
+npm install -g @aws-amplify/cli
+cd app
+amplify configure
+sign into aws account
+pick us-east-1
+create IAM user
+enter username
+enter accesskeyid
+enter secret access key
+enter profile name
+amplify init
+enter a name for the project
+pick visual studio code
+enter source directory
+enter distribution directory path
+enter npm run-script build
+enter npm run-script start
+enter y
+amplify add auth
+email
+done
+amplify push
+add the amplify cognito tag to the app
+import Amplify from'aws-amplify' in the app
+import awsconfig from './aws-exports'
+import {AmplifySignOut, withAuthenticator } from '@awsamplify/ui-react'
+below imports add Amplify.configure(awsconfig);
+at bottom change to export default withAuthenticator(app);
+npm install --save aws-amplify @aws-amplify/ui-react
+npm run dev
