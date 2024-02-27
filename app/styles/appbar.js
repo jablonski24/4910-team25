@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'About', 'Sponsors', 'Drivers'];
+const pages = ['Home', 'About', 'Sponsors', 'Drivers', 'Catalog'];
 const sections = ['Section1', 'Section2', 'Section3'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
