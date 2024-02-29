@@ -2,13 +2,21 @@
 import React from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
+import Amplify, {Auth} from 'aws-amplify';
+import {AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import awsconfig from '../src/aws-exports';
 
-export default function Home() {
+useEffect(() => {
+  Auth.configure(awsconfig);
+}, []);
+
+function Home() {
   return (
     <>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
+        <AmplifySignOut />
       </Head>
       <ResponsiveAppBar />
       <main>
@@ -48,3 +56,5 @@ export default function Home() {
     </>
   );
 }
+
+export default withAuthenticator(Home);
