@@ -1,18 +1,18 @@
-// pages/drivers.js
+// pages/admin.js
 import React from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
 
-export default function Drivers() {
+export default function Admin() {
   return (
     <>
       <Head>
-        <title>Drivers</title>
+        <title>Admin</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ResponsiveAppBar />
       <main>
-        <h1>Welcome Driver</h1>
+        {/* Your Admin page content */}
       </main>
     </>
   );
