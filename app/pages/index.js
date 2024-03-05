@@ -2,7 +2,6 @@
 import React from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
-import {AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 
 function Home() {
   return (
