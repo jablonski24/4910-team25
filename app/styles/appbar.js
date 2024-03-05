@@ -12,13 +12,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'About', 'Sponsors', 'Drivers'];
+const pages = ['Home', 'About', 'Drivers', 'Sponsors', 'Admins', 'Login'];
 const sections = ['Section1', 'Section2', 'Section3'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,8 +39,18 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLoginButtonClick = () => {
+    window.location.href = "https://team25officialsignup.auth.us-east-1.amazoncognito.com/login?client_id=100d3kpmsuk6qt752bcqkstbsp&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fmain.d2gmf4p0ogiu5s.amplifyapp.com%2F";
+  };
+
   const handleNavigate = (path) => {
-    router.push(path);
+    if (path.toLowerCase() === '/login') {
+      // Redirect to the external login URL
+      window.location.href = "https://team25officialsignup.auth.us-east-1.amazoncognito.com/login?client_id=100d3kpmsuk6qt752bcqkstbsp&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fmain.d2gmf4p0ogiu5s.amplifyapp.com%2F";
+    } else {
+      // For other paths, use router.push
+      router.push(path);
+    }
     handleCloseNavMenu();
   };
 

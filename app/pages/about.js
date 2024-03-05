@@ -3,9 +3,7 @@ import Head from 'next/head';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { BottomNavigation } from '@mui/material';
 import styles from '@/styles/Home.module.css';
-import { lightBlue } from '@mui/material/colors';
 import ResponsiveAppBar from '../styles/appbar';
 
 export default function About() {
@@ -16,9 +14,10 @@ export default function About() {
     setValue(newValue);
   };
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
     async function fetchEntries() {
-      const res = await fetch('https://main.d2gmf4p0ogiu5s.amplifyapp.com/api/about_info');
+      const res = await fetch(`${baseUrl}/api/about_info`);
       const data = await res.json();
       setEntries(data);
     }

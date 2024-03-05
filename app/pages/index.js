@@ -2,8 +2,9 @@
 import React from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
+import {AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 
-export default function Home() {
+function Home() {
   return (
     <>
       <Head>
@@ -48,3 +49,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;
