@@ -3,9 +3,7 @@ import Head from 'next/head';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { BottomNavigation } from '@mui/material';
 import styles from '@/styles/Home.module.css';
-import { lightBlue } from '@mui/material/colors';
 import ResponsiveAppBar from '../styles/appbar';
 
 export default function About() {
