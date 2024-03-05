@@ -12,11 +12,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'About', 'Sponsors', 'Drivers'];
+const pages = ['Home', 'About', 'Drivers', 'Sponsors', 'Admins'];
 const sections = ['Section1', 'Section2', 'Section3'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -42,9 +40,12 @@ function ResponsiveAppBar() {
   };
 
   const handleNavigate = (path) => {
+    if (path === '/home') {
+      path = '/';
+    }
     router.push(path);
     handleCloseNavMenu();
-  };
+  };  
 
   return (
     <AppBar position="static">
