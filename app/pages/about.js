@@ -24,7 +24,7 @@ export default function About() {
     }
 
     fetchEntries().catch(console.error);
-  }, []);
+  }, [baseUrl]);
 
   return (
     <>
