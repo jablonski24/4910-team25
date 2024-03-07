@@ -15,6 +15,7 @@ export default function About() {
   };
 
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  console.log(baseUrl)
   useEffect(() => {
     async function fetchEntries() {
       const res = await fetch(`${baseUrl}/api/about_info`);
@@ -23,7 +24,7 @@ export default function About() {
     }
 
     fetchEntries().catch(console.error);
-  }, []);
+  }, [baseUrl]);
 
   return (
     <>
