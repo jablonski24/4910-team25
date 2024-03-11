@@ -1,4 +1,4 @@
-// GET all available catalog items
+// POST send application to Sponsor
 
 import mysql from 'mysql2/promise';
 import { config } from 'dotenv';
@@ -22,16 +22,14 @@ export default async function handler(req, res) {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        const userID = req.query.userID;
+        // get application
+        const orgName = req.body;
         
-        const [userRows] = await connection.query('SELECT orgID * FROM User_Org WHERE userID = ?', [userID]);
-
-          // Check if a sponsorID was found
-          if (userRows.length > 0) {
-            const sponsorID = userRows[0].orgID;
-          }
-
-        const [rows] = await connection.query('SELECT * FROM catalog WHERE orgID = ?', [sponsorID]);
+        // make query
+        const query = 'INSERT INTO Org (org_Name) VALUES (?)';
+        
+        // send query
+        const [rows] = await connection.query(query,[orgName]);
 
         // Close the database connection
         await connection.end();

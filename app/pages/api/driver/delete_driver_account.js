@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
         const userID = req.query.userID;
 
-        const [result] = await connection.query('DELETE FROM User WHERE userID = ?', [userID]);
+        const [result] = await connection.query('UPDATE User SET is_active = false WHERE userID = ?', [userID]);
 
         // Close the database connection
         await connection.end();
