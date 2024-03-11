@@ -1,5 +1,5 @@
 // pages/admin.js
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
 import { Container, Typography, Card, CardContent, Button, TextField, Box } from '@mui/material';
@@ -20,6 +20,25 @@ const mockAdmins = [
 ];
 
 export default function Admin() {
+  const [newSponsorName, setNewSponsorName] = useState('');
+  const [newDriverName, setNewDriverName] = useState('');
+  const [newAdminName, setNewAdminName] = useState('');
+
+  const handleRemoveSponsor = (sponsorId) => {
+    // Implement logic to remove the selected sponsor
+    console.log(`Removing sponsor with ID: ${sponsorId}`);
+  };
+
+  const handleRemoveDriver = (driverId) => {
+    // Implement logic to remove the selected driver
+    console.log(`Removing driver with ID: ${driverId}`);
+  };
+
+  const handleRemoveAdmin = (adminId) => {
+    // Implement logic to remove the selected admin
+    console.log(`Removing admin with ID: ${adminId}`);
+  };
+
   return (
     <>
       <Head>
@@ -38,10 +57,25 @@ export default function Admin() {
           <Card key={sponsor.id} style={{ marginBottom: '16px' }}>
             <CardContent>
               <Typography variant="h6">{sponsor.name}</Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleRemoveSponsor(sponsor.id)}
+                style={{ marginTop: '8px' }}
+              >
+                Remove
+              </Button>
             </CardContent>
           </Card>
         ))}
-        <TextField label="New Sponsor Name" variant="outlined" fullWidth margin="normal" />
+        <TextField
+          label="New Sponsor Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={newSponsorName}
+          onChange={(e) => setNewSponsorName(e.target.value)}
+        />
         <Button variant="contained" color="primary">
           Add Sponsor
         </Button>
@@ -56,10 +90,25 @@ export default function Admin() {
           <Card key={driver.id} style={{ marginBottom: '16px' }}>
             <CardContent>
               <Typography variant="h6">{driver.name}</Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleRemoveDriver(driver.id)}
+                style={{ marginTop: '8px' }}
+              >
+                Remove
+              </Button>
             </CardContent>
           </Card>
         ))}
-        <TextField label="New Driver Name" variant="outlined" fullWidth margin="normal" />
+        <TextField
+          label="New Driver Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={newDriverName}
+          onChange={(e) => setNewDriverName(e.target.value)}
+        />
         <Button variant="contained" color="primary">
           Add Driver
         </Button>
@@ -74,10 +123,25 @@ export default function Admin() {
           <Card key={admin.id} style={{ marginBottom: '16px' }}>
             <CardContent>
               <Typography variant="h6">{admin.name}</Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => handleRemoveAdmin(admin.id)}
+                style={{ marginTop: '8px' }}
+              >
+                Remove
+              </Button>
             </CardContent>
           </Card>
         ))}
-        <TextField label="New Admin Name" variant="outlined" fullWidth margin="normal" />
+        <TextField
+          label="New Admin Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={newAdminName}
+          onChange={(e) => setNewAdminName(e.target.value)}
+        />
         <Button variant="contained" color="primary">
           Add Admin
         </Button>
