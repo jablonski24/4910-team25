@@ -1,29 +1,3 @@
-// import { React, useState } from "react";
-// import Head from "next/head";
-// import ResponsiveAppBar from '../styles/appbar';
-
-// export default function Store() {
-//     const headerStyle = {
-//         textAlign: 'center',
-//         fontSize: '50px', 
-//         fontWeight: 'bold',
-//         margin: '20px 0' 
-//       };
-//     return (
-//         <>
-//             <Head>
-//                 <title>Store</title>
-//                 <link rel="icon" href="/favicon.ico" />
-//             </Head>
-//             <ResponsiveAppBar />
-//             <header style={headerStyle}>Store</header>
-
-//         </>
-//     );
-
-
-// }
-
 import { React, useState } from 'react';
 import Head from 'next/head';
 import ResponsiveAppBar from '../styles/appbar';
