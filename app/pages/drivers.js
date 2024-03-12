@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useRouter } from 'next/router';
+import Store from './store';
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -97,17 +98,11 @@ export default function Drivers() {
           </Grid>
           </div>
         )}
-
+        </Container>
+        {/*Store page works better outside container*/}
         {value === 1 && (
-          <div>
-            {/* Store Content */}
-            <Typography variant="h3" gutterBottom style={{ marginTop: '16px' }}>
-              Store
-            </Typography>
-            {/* Add store content here */}
-          </div>
+            <Store />
         )}
-      </Container>
     </>
   );
 }
