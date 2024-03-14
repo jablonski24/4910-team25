@@ -23,13 +23,13 @@ export default async function handler(req, res) {
         const connection = await mysql.createConnection(dbConfig);
 
         // get application
-        const {org_Name} = req.body;
+        const {org_ID} = req.body;
         
         // make query
-        const query = 'INSERT INTO Org (org_Name) VALUES (?)';
+        const query = 'DELETE FROM Org WHERE org_ID = ?';
         
         // send query
-        const [rows] = await connection.query(query,[org_Name]);
+        const [rows] = await connection.query(query,[org_ID]);
 
         // Close the database connection
         await connection.end();

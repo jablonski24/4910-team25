@@ -14,8 +14,12 @@ import {
   TextField,
 } from '@mui/material';
 
+import AddItemCatalog from "./catalog/org_catalog_add"
+import ManageCatalog from "./catalog/org_catalog_manager"
+
 export default function Sponsors() {
   const [value, setValue] = useState(0);
+  const [catalogValue, setCatalogValue] = useState(0);
   const [newDriverName, setNewDriverName] = useState('');
   const [newDriverPoints, setNewDriverPoints] = useState('');
   const [applications, setApplications] = useState([
@@ -34,6 +38,10 @@ export default function Sponsors() {
       reason: 'I have previous experience as a professional driver and love the program goals.',
     },
   ]);
+
+  const handleCatalogChange = (event, newValue) => {
+    setCatalogValue(newValue);
+  };
 
   const [mockDriverData, setMockDriverData] = useState([
     { id: 1, name: 'John Doe', points: 150 },
@@ -209,24 +217,26 @@ export default function Sponsors() {
           </div>
         )}
 
-        {value === 2 && (
-          <div>
-            <Typography variant="h3" gutterBottom style={{ marginTop: '16px' }}>
-              Catalog
-            </Typography>
-            {mockStoreItems.map((item) => (
-              <Card key={item.id} style={{ marginBottom: '16px' }}>
-                <CardContent>
-                  <Typography variant="h6">{item.name}</Typography>
-                  <Typography variant="body1">Price: ${item.price}</Typography>
-                  <Button variant="contained" color="primary">
-                    Add to Store
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+    {value === 2 && (
+      <>
+        <Tabs value={catalogValue} onChange={handleCatalogChange} aria-label="catalog tabs">
+          <Tab label="Add Items" />
+          <Tab label="Manage Items" />
+        </Tabs>
+        
+        {/* Tab Panels */}
+        {catalogValue === 0 && (
+          <AddItemCatalog />
         )}
+        {catalogValue === 1 && (
+           <ManageCatalog />
+          
+        )}
+      </>
+    )}
+
+
+         
       </Container>
     </>
   );

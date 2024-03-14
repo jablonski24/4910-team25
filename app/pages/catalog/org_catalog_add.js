@@ -1,10 +1,21 @@
 import React, { useState } from 'react'; // Correctly import useState
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  Tabs,
+  Tab,
+  Box,
+  Button,
+  TextField,
+} from '@mui/material';
 import Head from 'next/head';
-import ResponsiveAppBar from '../styles/appbar';
+import ResponsiveAppBar from '../../styles/appbar';
 
 
 
-export default function Catalog() {
+export default function Catalog_add() {
   const [entries, setEntries] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [mediaType, setMediaType] = useState('all');
@@ -254,14 +265,9 @@ function renderEntryComponent(entry) {
 
 return (
   <>
-    <Head>
-      <title>Catalog</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <ResponsiveAppBar />
     {/* Seach */}
     <div>
-      <header style={headerStyle}>Catalog Search</header>
+      <header style={headerStyle}>Search iTunes</header>
       <div style={{ textAlign: 'center', margin: '20px 0' }}>
         { }
         <input
