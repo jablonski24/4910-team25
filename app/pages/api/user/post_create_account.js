@@ -4,6 +4,8 @@ import { config } from 'dotenv';
 config(); // This loads the .env variables
 
 export default async function handler(req, res) {
+
+    // Database connection configuration
     const dbConfig = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
@@ -14,23 +16,26 @@ export default async function handler(req, res) {
 
     console.log(dbConfig);
 
-    const { user_ID, org_ID } = req.body;
+    const { first_Name, last_Name, email, user_Type } = req.body;
 
     try {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        const sql_query = await connection.query(`
-            INSERT into User_Org (user_ID, org_ID) VALUES (?, ?);
+        const sql_query = (`
+        INSERT INTO User (first_Name, last_Name, email, user_Type) VALUES (?, ?, ?, ?);
         `);
 
-        await connection.execute(sql_query, [user_ID, org_ID]);
+        const [results] = await connection.execute(sql_query, [first_Name, last_Name, email, user_Type]);
 
         // Close the database connection
         await connection.end();
 
-        // Send the data as JSON response
-        res.status(200).json("Successfuly added to org");
+        if (results.affectedRows > 0) {
+            res.status(200).json({ message: "User added successfully" });
+        } else {
+            res.status(404).json({ message: "User could not be added" });
+        }
     } catch (error) {
         console.error('Database connection or query failed', error);
         res.status(500).json({ message: 'Internal Server Error' });
