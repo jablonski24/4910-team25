@@ -1,9 +1,12 @@
+// View all pending driver application for a specific org
+
 import mysql from 'mysql2/promise';
 import { config } from 'dotenv';
 
 config(); // This loads the .env variables
 
-export default async function handler(req, res) {
+export default async function viewAllApplications(req, res) {
+    // Database connection configuration
     const dbConfig = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
@@ -12,33 +15,36 @@ export default async function handler(req, res) {
         database: process.env.DB_NAME
     };
 
-    console.log(dbConfig);
-
-    const { org_ID } = req.body;
-
     try {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        const sql_query = await connection.query(`
-        SELECT U.user_ID, U.email, U.first_Name, U.last_Name, U.user_Type, O.org_ID, O.org_Name, UO.app_Status
-        FROM User_Org UO
-        JOIN User U ON UO.user_ID = U.user_ID
-        JOIN Org O ON UO.org_ID = O.org_ID
-        WEHRE UO.app_Status = 'PENDING'
-        AND UO.org_ID = ?
-        `);
+        // Extract org_ID from the request body or query parameters
+        const org_ID = req.query.org_ID;
 
-        const [rows] = await connection.execute(sql_query, [org_ID]);
+        // Prepare the SELECT query
+        const query = `
+            SELECT 
+                User_Org.user_ID, 
+                User_Org.org_ID, 
+                User.first_Name, 
+                User.last_Name, 
+                User.email, 
+                User_Org.app_Status 
+            FROM 
+                User_Org 
+            JOIN 
+                User ON User_Org.user_ID = User.user_ID 
+            WHERE 
+                User_Org.org_ID = ? AND 
+                User_Org.app_Status = 'PENDING';
+        `;
 
-        // Close the database connection
-        await connection.end();
+        // Execute the query
+        const [applications] = await connection.query(query, [org_ID]);
 
-        res.json({
-            success: true,
-            message: 'Successfuly returned applications',
-            data: rows
-        })
+        // Send the data as JSON response
+        res.status(200).json(applications);
     } catch (error) {
         console.error('Database connection or query failed', error);
         res.status(500).json({ message: 'Internal Server Error' });

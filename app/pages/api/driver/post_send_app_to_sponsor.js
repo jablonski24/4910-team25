@@ -22,20 +22,19 @@ export default async function handler(req, res) {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        // get application
-        const {orgID, userID, reason, timestamp} = req.body;
-        
-        // make query
-        const query = 'INSERT INTO Driver_app_audit (orgID, userID, reason, timestamp) VALUES (?,?,?,?)';
-        
-        // send query
-        const [rows] = await connection.query(query,[orgID, userID, reason, timestamp]);
+        const { user_ID, org_ID, reason, timestamp } = req.body;
+
+        const query = 'INSERT INTO User_Org (user_ID, org_ID)  VALUES (?,?)'
+        const response = await connection.query(query,[user_ID, org_ID]);
+
+        const query2 = 'INSERT INTO Driver_app_audit (org_ID, user_ID, reason, timestamp) VALUES (?,?,?,?)';
+        const response2 = await connection.query(query2,[org_ID, user_ID, reason, timestamp]);
 
         // Close the database connection
         await connection.end();
 
         // Send the data as JSON response
-        res.status(200).json(rows);
+        res.status(200).json({message: "Successfully sent application"});
     } catch (error) {
         console.error('Database connection or query failed', error);
         res.status(500).json({ message: 'Internal Server Error' });

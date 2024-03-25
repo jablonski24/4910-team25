@@ -1,5 +1,3 @@
-// Remove user from org
-
 import mysql from 'mysql2/promise';
 import { config } from 'dotenv';
 
@@ -24,8 +22,8 @@ export default async function handler(req, res) {
 
         const { user_ID, org_ID } = req.body;
 
-        const query = 'DELETE FROM User_Org WHERE user_ID = ? AND org_ID = ?;'
-        const response = await connection.query(query,[user_ID, org_ID]);
+        const query = 'UPDATE User_Org SET app_Status = ? WHERE user_ID = ? AND org_ID = ?'
+        const response = await connection.query(query,["ACCEPTED", user_ID, org_ID]);
 
         //ADD AUDIT LOG
         
@@ -34,7 +32,7 @@ export default async function handler(req, res) {
         await connection.end();
 
         // Send the data as JSON response
-        res.status(200).json({message: "User successfully removed from org"});
+        res.status(200).json({message: "Successfully accepted driver"});
     } catch (error) {
         console.error('Database connection or query failed', error);
         res.status(500).json({ message: 'Internal Server Error' });

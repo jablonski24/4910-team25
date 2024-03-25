@@ -1,9 +1,13 @@
+// POST add sponsor to org
+
 import mysql from 'mysql2/promise';
 import { config } from 'dotenv';
 
 config(); // This loads the .env variables
 
 export default async function handler(req, res) {
+
+    // Database connection configuration
     const dbConfig = {
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
@@ -14,26 +18,23 @@ export default async function handler(req, res) {
 
     console.log(dbConfig);
 
-    const { user_ID, org_ID } = req.body;
-
     try {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        const sql_query = await connection.query(`
-        UPDATE User_Org SET app_Status = 'REJECTED' WHERE user_ID = ? AND org_ID = ?;
-        `);
+        const { user_ID, org_ID } = req.body;
 
-        const [results] = await connection.execute(sql_query, [user_ID, org_ID]);
+        const query = 'INSERT INTO User_Org (user_ID, org_ID)  VALUES (?,?)'
+        const response = await connection.query(query,[user_ID, org_ID]);
+
+        const query2 = 'UPDATE User_Org SET app_Status = ? WHERE user_ID = ? AND org_ID = ?'
+        const response2 = await connection.query(query2,["ACCEPTED", user_ID, org_ID]);
 
         // Close the database connection
         await connection.end();
 
-        if (results.affectedRows > 0) {
-            res.status(200).json({ message: "Driver rejected from organization successfully." });
-        } else {
-            res.status(404).json({ message: "Driver or organization not found." });
-        }
+        // Send the data as JSON response
+        res.status(200).json({message: "Successfully added sponsor to org"});
     } catch (error) {
         console.error('Database connection or query failed', error);
         res.status(500).json({ message: 'Internal Server Error' });
