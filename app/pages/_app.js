@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import Amplify from 'aws-amplify';
-import awsExports from "app/aws-exports.js"; // Make sure this path is correct
+import awsExports from "aws-exports.js";
 
 Amplify.configure(awsExports);
 
