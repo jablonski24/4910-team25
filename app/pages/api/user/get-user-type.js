@@ -20,10 +20,9 @@ export default async function handler(req, res) {
         // Create a connection to the database
         const connection = await mysql.createConnection(dbConfig);
 
-        const userEmail = req.query.userEmail;
+        const userID = req.query.userID;
 
-        const [rows] = await connection.query('SELECT user_Type, first_name, last_name FROM User WHERE email = ?', [userEmail]);
-
+        const [rows] = await connection.query('SELECT user_Type, first_name, last_name FROM User WHERE user_ID = ?', [userID]);
 
         // Close the database connection
         await connection.end();
