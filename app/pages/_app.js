@@ -1,5 +1,11 @@
 import "@/styles/globals.css";
+import Amplify from 'aws-amplify';
+import awsExports from "app/aws-exports.js"; // Make sure this path is correct
 
-export default function App({ Component, pageProps }) {
+Amplify.configure(awsExports);
+
+function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
+
+export default App;
