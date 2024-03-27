@@ -3,17 +3,23 @@ import { getCurrentUser } from 'aws-amplify/auth';
 
 export default function User() {
 
-async function currentAuthenticatedUser() {
-  try {
-    const { username, userId, signInDetails } = await getCurrentUser();
-    console.log(`The username: ${username}`);
-    console.log(`The userId: ${userId}`);
-    console.log(`The signInDetails: ${signInDetails}`);
-  } catch (err) {
-    console.log(err);
-  }
-}
+  useEffect(() => {
+    async function currentAuthenticatedUser() {
+      try {
+        const user = await getCurrentUser(); // Adjusted to get the user object directly
+        console.log(`The username: ${user.username}`);
+        console.log(`The userId: ${user.attributes.sub}`); // Assuming the userId is in the attributes
+        // signInDetails structure depends on the specifics of your setup
+        console.log(`The signInDetails: ${user.signInUserSession}`); // Example path, adjust according to your structure
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    currentAuthenticatedUser();
+  }, []); // Empty dependency array means this runs once on component mount
+
   return (
-    <p> Hi </p>
+    <p>Hi</p>
   );
-};
+}
+
