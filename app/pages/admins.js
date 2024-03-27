@@ -4,17 +4,17 @@ import ResponsiveAppBar from '../styles/appbar';
 import { useRouter } from 'next/router';
 import { Container, Typography, Card, CardContent, Button, TextField, Box } from '@mui/material';
 
-const mockSponsors = [
+let mockSponsors = [
   { id: 1, name: 'ABC Corporation' },
   { id: 2, name: 'XYZ Ltd' },
 ];
 
-const mockDrivers = [
+let mockDrivers = [
   { id: 1, name: 'John Doe' },
   { id: 2, name: 'Jane Smith' },
 ];
 
-const mockAdmins = [
+let mockAdmins = [
   { id: 1, name: 'Admin1' },
   { id: 2, name: 'Admin2' },
 ];
