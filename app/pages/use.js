@@ -7,10 +7,11 @@ export default function User() {
     async function currentAuthenticatedUser() {
       try {
         const user = await getCurrentUser(); // Adjusted to get the user object directly
-        console.log(`The username: ${user.username}`);
-        console.log(`The userId: ${user.attributes.sub}`); // Assuming the userId is in the attributes
-        // signInDetails structure depends on the specifics of your setup
-        console.log(`The signInDetails: ${user.signInUserSession}`); // Example path, adjust according to your structure
+        // console.log(`The username: ${user.username}`);
+        // console.log(`The userId: ${user.attributes.sub}`); // Assuming the userId is in the attributes
+        // // signInDetails structure depends on the specifics of your setup
+        // console.log(`The signInDetails: ${user.signInUserSession}`); // Example path, adjust according to your structure
+        console.log(user);
       } catch (err) {
         console.log(err);
       }
